@@ -4,14 +4,12 @@ include 'config.php';
 $search = $_GET['search'] ?? '';
 $category = $_GET['category'] ?? '';
 
-// Categories Dropdown
 $categories = $conn->query("
     SELECT id, name
     FROM categories
     ORDER BY name
 ");
 
-// Main Query
 $sql = "
 SELECT
     p.id,
@@ -53,7 +51,6 @@ if (!$result) {
     die("Query failed: " . $conn->error);
 }
 
-// Statistics Query
 $statsSql = "
 SELECT
     COUNT(*) AS total_products,
@@ -90,13 +87,23 @@ $stats = $conn->query($statsSql)->fetch_assoc();
 
 <div class="container">
 
-    <h1>Product Inventory</h1>
+   <h1>Product Inventory</h1>
 
-    <a href="add.php" class="add-btn">
-        + Add Product
-    </a>
+<a href="add.php" class="add-btn">
+    + Add Product
+</a>
 
-    <br><br>
+<a href="report.php" class="add-btn report-btn">
+    Reports
+</a>
+
+<?php if(isset($_GET['deleted'])): ?>
+    <div style="background: #d1fae5; padding: 10px; margin: 10px 0; border-radius: 6px;">
+        Product deleted successfully!
+    </div>
+<?php endif; ?>
+
+<br><br>
 
     <form method="GET">
 
@@ -131,14 +138,8 @@ $stats = $conn->query($statsSql)->fetch_assoc();
         </select>
 
         <button type="submit">
-            Filter
+            Search
         </button>
-
-        <a href="index.php">
-            <button type="button">
-                Reset
-            </button>
-        </a>
 
     </form>
 

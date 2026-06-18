@@ -222,3 +222,11 @@ tr:hover {
     font-size: 14px;
     transition: .3s;
 }
+.report-btn{
+    background:#16a34a;
+    margin-left:10px;
+}
+
+.report-btn:hover{
+    background:#15803d;
+}

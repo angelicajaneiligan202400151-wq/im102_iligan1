@@ -109,7 +109,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <select name="supplier_id" required>
 
 <option value="">
--- Select Supplier --
+
 </option>
 
 <?php while($sup = $suppliers->fetch_assoc()): ?>
